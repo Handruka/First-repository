@@ -11,6 +11,7 @@ const (
 	mInKm     = 1000  // количество метров в километре.
 	minInH    = 60    // количество минут в часе.
 	kmhInMsec = 0.278 // коэффициент для преобразования км/ч в м/с.
+	cmInM     = 100   // количество сантиметров в метре.
 )
 
 // distance возвращает дистанцию(в километрах), которую преодолел пользователь за время тренировки.
@@ -107,7 +108,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	if duration == 0 {
 		return 0
 	}
-	walkingCalories := ((walkingCaloriesWeightMultiplier*weight + (math.Pow((meanSpeed(action, duration)*kmhInMsec), 2)/height)*walkingSpeedHeightMultiplier*weight) * duration * minInH)
+	walkingCalories := ((walkingCaloriesWeightMultiplier*weight + (math.Pow((meanSpeed(action, duration)*kmhInMsec), 2)/height/cmInM)*walkingSpeedHeightMultiplier*weight) * duration * minInH)
 	return walkingCalories
 }
 
